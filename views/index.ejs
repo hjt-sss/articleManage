@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>首页</title>
+    <%- include head %>
+  </head>
+  <body>
+    <%- include('bar',{username: username}) %>
+    <div class="list">
+      <% data.list.map(function(item,index){ %>
+        <div class="row">
+          <span><%= index + 1 %></span>
+          <span><%= item.username %></span>
+          <span><a href="/detail?date=<%= item.date %>"><%= item.title %></a></span>
+          <span><%= item.date %></span>
+          <span>
+            <a href="/write?date=<%= item.date %>&page=<%= data.curPage%>">编辑</a>
+            <a href="/article/delete?date=<%= item.date %>&page=<%= data.curPage%>">删除</a>
+          </span>
+        </div>
+      <% }) %>
+      <div class="pages">
+        <% for(let i=1; i<=data.total; i++) { %>
+          <a href="/?page=<%= i %>"><%= i %></a>
+        <% } %>
+      </div>
+    </div>
+  </body>
+</html>
